@@ -1,4 +1,5 @@
 'use strict'
+require('custom-env').env(true);
 const app = require("./app");
 const ip = require("ip");
 const port = 8080;
@@ -11,8 +12,7 @@ const connectionOptions = {
     useCreateIndex: true
 }
 
-mongoose.connect("mongodb+srv://dev_user:NzuR5EGLBByKvfCj@cluster0.2vlym.mongodb.net/dev?retryWrites=true&w=majority",
-connectionOptions, (error, res) => {
+mongoose.connect(process.env.DB_HOST, connectionOptions, (error, res) => {
     if(error){
         return console.log("no se pudo conectar", error);
     }else{
